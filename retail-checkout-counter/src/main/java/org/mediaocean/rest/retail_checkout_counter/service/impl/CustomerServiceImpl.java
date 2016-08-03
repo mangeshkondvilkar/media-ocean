@@ -6,11 +6,12 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.log4j.Logger;
 import org.mediaocean.rest.retail_checkout_counter.dao.impl.InMemoryDaoImpl;
 import org.mediaocean.rest.retail_checkout_counter.model.CategoryType;
 import org.mediaocean.rest.retail_checkout_counter.model.Customer;
-import org.mediaocean.rest.retail_checkout_counter.model.CustomerBill;
 import org.mediaocean.rest.retail_checkout_counter.model.Product;
+import org.mediaocean.rest.retail_checkout_counter.resource.CustomerResource;
 import org.mediaocean.rest.retail_checkout_counter.service.ICustomerService;
 import org.springframework.stereotype.Component;
 
@@ -23,13 +24,15 @@ public class CustomerServiceImpl implements ICustomerService {
 	private Map<Integer, Customer> customerMap = InMemoryDaoImpl
 			.getCustomerData();
 
+	private static final Logger LOGGER = Logger.getLogger(CustomerResource.class);
+	
 	public CustomerServiceImpl() {
 		createCustomerData();
 	}
 	
 	@PostConstruct
 	public void post() {
-		System.out.println("Inside CustomerServiceImpl() Post...");
+		LOGGER.error("Inside CustomerServiceImpl() Post...");
 	}
 
 	@Override
@@ -46,11 +49,11 @@ public class CustomerServiceImpl implements ICustomerService {
 
 	@Override
 	public List<Customer> getAllCustomers() {
-		System.out.println("inside getAllCustomers()");
 		return new ArrayList<Customer>(customerMap.values());
 	}
 
 	private void createCustomerData() {
+		LOGGER.error("creating in-memory dummy data: Entry");
 		List<Product> productList = new ArrayList<Product>();
 		Product product1 = new Product();
 		product1.setId(1);
@@ -71,21 +74,28 @@ public class CustomerServiceImpl implements ICustomerService {
 		List<Product> productList1 = new ArrayList<Product>();
 		Product product3 = new Product();
 		product3.setId(1);
-		product3.setCost(55);
+		product3.setCost(55.5);
 		product3.setQuantity(4);
 		product3.setCategory(CategoryType.A);
 		Product product4 = new Product();
 		product4.setId(2);
-		product4.setCost(33);
+		product4.setCost(33.4);
 		product4.setQuantity(8);
 		product4.setCategory(CategoryType.B);
+		Product product5 = new Product();
+		product5.setId(3);
+		product5.setCost(125.8);
+		product5.setQuantity(5);
+		product5.setCategory(CategoryType.C);
 		productList1.add(product3);
 		productList1.add(product4);
+		productList1.add(product5);
 		Customer customer2 = new Customer();
 		customer2.setId(2);
 		customer2.setProductList(productList1);
 
 		customerMap.put(1, customer1);
 		customerMap.put(2, customer2);
+		LOGGER.error("creating in-memory dummy data: Exit");
 	}
 }
