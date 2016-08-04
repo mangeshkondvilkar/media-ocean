@@ -47,12 +47,25 @@
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
 		</dependency>
+
+		<!-- for HTTP basic Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring-security-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring-security-version}</version>
+		</dependency>
 	</dependencies>
 
 	<properties>
 		<org.springframework-version>4.3.2.RELEASE</org.springframework-version>
 		<jackson.databind.version>2.8.1</jackson.databind.version>
 		<log4j.version>1.2.17</log4j.version>
+		<spring-security-version>4.1.1.RELEASE</spring-security-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 </project>
