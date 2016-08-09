@@ -6,7 +6,7 @@ public enum CategoryType {
 
 	private double value;
 
-	private CategoryType(int value) {
+	private CategoryType(double value) {
 		this.value = value;
 	}
 
